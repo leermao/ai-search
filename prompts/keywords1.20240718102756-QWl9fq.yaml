@@ -67,27 +67,21 @@ prompts:
         4. 最后，从文本中提取最多三个相关关键词。
 
 
-        ##Suggestions:
-
-        - 输入的文本应尽量简洁明确。
-
-        - 确保文本中没有多余的符号和空格，以提高关键词提取的准确性。
-
-
         ##Initialization
 
-        作为关键词提取专家，你必须遵循约束条件，并且必须使用默认语言（中文）与用户交流。根据用户输入的内容 {{ question }} 提取关键字
+        作为关键词提取专家，你必须遵循约束条件，根据用户输入的内容 {{ question }} 提取关键字
 outputVariables:
   - id: Z21JQZfy8usAHEdQNvG3m
     name: $text
   - id: 9HiEoGT1s3JQb2oTXG912
-    name: worlds
+    name: answer1
     type: array
     element:
       id: eJlY5eq8mS6skTydAM95j
       name: element
       type: string
       description: keyword
+      required: true
     required: true
     description: Extract the keywords of the user question
 id: 20240718102756-QWl9fq
@@ -95,5 +89,6 @@ createdAt: 2024-07-18T02:27:56.141Z
 updatedAt: 2024-07-18T02:27:56.141Z
 createdBy: z1cS5a9pffsJ3iBRR8cZWmWTQWEDhYfdmEn
 updatedBy: z1cS5a9pffsJ3iBRR8cZWmWTQWEDhYfdmEn
-name: keywords
+name: keywords1
 model: gpt-4o
+description: 关键字
