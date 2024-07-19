@@ -1,8 +1,8 @@
-temperature: 1
-topP: 1
 id: "468966286659944448"
+name: 优化搜索
+createdAt: 2024-07-18T02:24:35.714Z
+updatedAt: 2024-07-18T02:24:35.714Z
 createdBy: z1cS5a9pffsJ3iBRR8cZWmWTQWEDhYfdmEn
 updatedBy: z1cS5a9pffsJ3iBRR8cZWmWTQWEDhYfdmEn
-name: 优化搜索
-updatedAt: 2024-07-18T02:24:35.714Z
-createdAt: 2024-07-18T02:24:35.714Z
+temperature: 1
+topP: 1

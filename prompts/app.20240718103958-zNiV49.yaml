@@ -1,0 +1,22 @@
+type: prompt
+parameters:
+  - id: 5fvJ9RAXzult_oK2lGys2
+    type: string
+    key: question
+prompts:
+  - type: message
+    data:
+      id: Y_Py3oKIdSuktX93OrFFs
+      role: user
+      content: ""
+outputVariables:
+  - id: h9iDThIhAvXOhLti5465u
+    name: $text
+  - id: y25mwUsSEnJlvhreunNmt
+    name: keywords
+id: 20240718103958-zNiV49
+createdAt: 2024-07-18T02:39:58.816Z
+updatedAt: 2024-07-18T02:39:58.816Z
+createdBy: z1cS5a9pffsJ3iBRR8cZWmWTQWEDhYfdmEn
+updatedBy: z1cS5a9pffsJ3iBRR8cZWmWTQWEDhYfdmEn
+name: app

@@ -1,0 +1,26 @@
+type: prompt
+parameters:
+  - id: sCSC5ZLnRQyaim3zaE87Y
+    type: string
+    key: question
+prompts:
+  - type: message
+    data:
+      id: 7772yc1GqRicAEMKc7iMB
+      role: user
+      content: |-
+        你是数据关键词提取大师
+        请根据用户的输入问题 {{ question }}, 将查询扩展为包含同义词的查询，以捕捉更多相关结果, 提取出关键字， 最多三个关键字。
+
+        请注意
+        - 找出和用户相关的同义词
+        - 尽可能和问题相关， 提取出关键字， 最多三个关键字。
+outputVariables:
+  - id: iNaLar6dVeRrUJU452zNj
+    name: $text
+id: 20240718104107-KtyMnj
+createdAt: 2024-07-18T02:41:07.743Z
+updatedAt: 2024-07-18T02:41:07.743Z
+createdBy: z1cS5a9pffsJ3iBRR8cZWmWTQWEDhYfdmEn
+updatedBy: z1cS5a9pffsJ3iBRR8cZWmWTQWEDhYfdmEn
+name: other keywords
