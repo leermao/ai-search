@@ -1,0 +1,21 @@
+type: prompt
+parameters:
+  - id: beLTKr3917PrZcqMZzwdA
+    type: string
+    key: question
+prompts:
+  - type: message
+    data:
+      id: oAEXFswmqsYGMIBktQkWJ
+      role: user
+      content: "{{ question }}"
+outputVariables:
+  - id: nJoFGrr0H7v-YQb_yTBiV
+    name: name
+    required: true
+id: 20240730144256-wMkHw1
+createdAt: 2024-07-30T06:42:56.280Z
+updatedAt: 2024-07-30T06:42:56.280Z
+createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+name: call test

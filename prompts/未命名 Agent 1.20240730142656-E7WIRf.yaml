@@ -1,0 +1,20 @@
+type: prompt
+parameters:
+  - id: 8ovCCJDA1qY58mYKw_WgR
+    type: string
+    key: question
+prompts:
+  - type: message
+    data:
+      id: 2c0RD9NB-qXTPbtvMDMd9
+      role: user
+      content: "{{ question }}"
+outputVariables:
+  - id: _BLG3T24TQdHuGEE0IM8G
+    name: $text
+id: 20240730142656-E7WIRf
+createdAt: 2024-07-30T06:26:56.568Z
+updatedAt: 2024-07-30T06:26:56.568Z
+createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+name: 未命名 Agent 1

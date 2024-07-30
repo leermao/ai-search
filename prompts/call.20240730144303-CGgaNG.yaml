@@ -1,0 +1,54 @@
+type: function
+parameters:
+  - id: YL2mMcqkEtDwEsDqObo6v
+    type: string
+    key: question
+prompts:
+  9hXfvZsYW2mDxjUKOxebL:
+    index: 0
+    data:
+      type: message
+      data:
+        id: 9hXfvZsYW2mDxjUKOxebL
+        role: user
+        content: "{{ question }}"
+outputVariables: []
+id: 20240730144303-CGgaNG
+createdAt: 2024-07-30T06:43:03.472Z
+updatedAt: 2024-07-30T06:43:03.472Z
+createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+name: call
+code: |
+  const getUserHeader = () => {
+    const user = context.get('user');
+    return {
+      'x-user-did': user?.did,
+      'x-user-role': user?.role,
+      'x-user-provider': user?.provider,
+      'x-user-fullname': user?.fullName && encodeURIComponent(user?.fullName),
+      'x-user-wallet-os': user?.walletOS,
+    };
+  };
+
+  const result = await call({
+    name: 'z2qaBP9SahqU2L2YA3ip7NecwKACMByTFuiJ2',
+    method: 'POST',
+    path: '/api/ai/call'
+    data: {
+      projectId: '468966286659944448',
+      ref: 'main',
+      assistantId: '20240730144256-wMkHw1',
+      inputs: {
+        question,
+      },
+      sessionId: 'call',
+    },
+    headers: getUserHeader()
+  });
+
+  console.log(result)
+
+  return {
+    text: 'hello, AIGNE!'
+  }

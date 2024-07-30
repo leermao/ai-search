@@ -1,4 +1,4 @@
-type: prompt
+type: function
 parameters:
   - id: gtXb6dAfxPOpPKf9ijWeO
     type: string
@@ -15,15 +15,15 @@ parameters:
         parameters:
           question: "{{ question }}"
 prompts:
-  - type: message
+  flflpRQlaaO7t-rjM61Ls:
+    index: 0
     data:
-      id: flflpRQlaaO7t-rjM61Ls
-      role: user
-      content: 请根据 {{ search }} 的中的每一项数据内容和 {{ question }} 做对比，添加一个新的字段 score 表示和
-        question  的相关的比例分数，分数从 0 - 100， 0表示最低，100表示最高，然后从高到低排序。返回新的列表数据。
+      type: message
+      data:
+        id: flflpRQlaaO7t-rjM61Ls
+        role: user
+        content: ""
 outputVariables:
-  - id: NC3geI2Y-jc1L8SPZLiUU
-    name: $text
   - id: FXQdszuO8oIwo2cyUjIl3
     name: organic_results
     type: array
@@ -46,3 +46,36 @@ updatedAt: 2024-07-30T03:54:03.035Z
 createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
 updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
 name: AddScore
+model: gpt-4o-mini
+prompt: "{{question}}"
+code: |
+  const getUserHeader = () => {
+    const user = context.get('user');
+    return {
+      'x-user-did': user?.did,
+      'x-user-role': user?.role,
+      'x-user-provider': user?.provider,
+      'x-user-fullname': user?.fullName && encodeURIComponent(user?.fullName),
+      'x-user-wallet-os': user?.walletOS,
+    };
+  };
+
+
+  const list = (question?.organic_results || []).map(i=>{
+    return call({
+      name: 'z2qaBP9SahqU2L2YA3ip7NecwKACMByTFuiJ2',
+      method: 'POST',
+      path: '/api/ai/call'
+      data: {
+        projectId: '468966286659944448',
+        ref: 'main',
+        assistantId: ''
+      },
+      headers: getUserHeader()
+    })
+  })
+
+
+  return {
+    text: 'hello, AIGNE!'
+  }
