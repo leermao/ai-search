@@ -1,0 +1,73 @@
+type: function
+parameters:
+  - id: GVDfel1l4BehbFSNYPuJT
+    type: string
+    key: question
+prompts:
+  sqwbmXLUMvuDvjiY7Hwxa:
+    index: 0
+    data:
+      type: message
+      data:
+        id: sqwbmXLUMvuDvjiY7Hwxa
+        role: user
+        content: "{{ question }}"
+outputVariables:
+  - id: jQuR5yIutLBv99hRUCRoM
+    name: $text
+  - id: LvnG8SZocXSmg5ME_eL2E
+    name: organic_results
+    type: array
+    element:
+      id: uEXG3mtuFC_ax7-4HagvX
+      name: element
+      type: object
+      properties:
+        - id: gscJT-yjzJQ3NTeoS4rSr
+          type: string
+          name: title
+        - id: G0kEz-UZ5uZqLkETfHWm5
+          type: string
+          name: _content
+        - id: FGuhVsejyEIL9lF3xY8I8
+          type: string
+          name: id
+id: 20240730180626-i9pmlF
+createdAt: 2024-07-30T01:30:37.163Z
+updatedAt: 2024-07-30T01:30:37.163Z
+createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+name: AI-Search
+code: >
+  const url =
+  'http://localhost:8150/indexes/zNKZZuK3LDLfngFgJdaCT4aYow3yttGaPDTq-discuss-kit-posts/search';
+
+  const data = {
+    "q": question,
+    "hybrid": {
+      "embedder": "default",
+      "semanticRatio": 0.7
+    }
+  };
+
+
+  const list = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer 0xf74f55229a6a03f68ace5f07273869fe25a3675d1cc6005f4041b6512783acef9304f2b40981cf841349e5c1576df5aafb1b20d21354c955a7aa3cf7d789554f'
+    },
+    body: JSON.stringify(data)
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+      return data.hits;
+    })
+    .catch(error => console.error('Error:', error));
+
+
+  return {
+    organic_results: list,
+    related_questions: [],
+  }

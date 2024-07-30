@@ -47,8 +47,6 @@ code: |
     headers: getUserHeader()
   });
 
-  console.log(result)
-
   return {
     text: 'hello, AIGNE!'
   }

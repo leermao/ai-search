@@ -1,59 +1,58 @@
 type: function
 parameters:
-  - id: gtXb6dAfxPOpPKf9ijWeO
+  - id: GVDfel1l4BehbFSNYPuJT
     type: string
     key: question
-  - id: v20TWM3UeRxpP8RtvrpFX
+  - id: zjA4wJdmK9dDsRIe90Fh6
     key: search
     type: source
     source:
       variableFrom: tool
       agent:
         projectId: "468966286659944448"
-        id: 20240730093037-FRWnyG
+        id: 20240730182622-tfMzzq
         from: assistant
         parameters:
           question: "{{ question }}"
 prompts:
-  flflpRQlaaO7t-rjM61Ls:
+  sqwbmXLUMvuDvjiY7Hwxa:
     index: 0
     data:
       type: message
       data:
-        id: flflpRQlaaO7t-rjM61Ls
+        id: sqwbmXLUMvuDvjiY7Hwxa
         role: user
-        content: ""
+        content: "{{ question }}"
 outputVariables:
-  - id: FXQdszuO8oIwo2cyUjIl3
+  - id: jQuR5yIutLBv99hRUCRoM
+    name: $text
+  - id: LvnG8SZocXSmg5ME_eL2E
     name: organic_results
     type: array
     element:
-      id: NfWAFiSYdgbL9INqV9oGJ
+      id: uEXG3mtuFC_ax7-4HagvX
       name: element
       type: object
       properties:
-        - id: L1BKQUDM9KbeG3UQsUpd8
+        - id: gscJT-yjzJQ3NTeoS4rSr
           type: string
-          name: content
-          required: false
-        - id: AgaIdt2FEgtIf0w_giEHa
-          type: number
+          name: title
+        - id: G0kEz-UZ5uZqLkETfHWm5
+          type: string
+          name: _content
+        - id: FGuhVsejyEIL9lF3xY8I8
+          type: string
+          name: id
+        - id: xAcTshVPTRxct94T2ZLSO
+          type: string
           name: score
-          required: true
-        - id: Goym78I0jfznZHmoeLajE
-          type: string
-          name: link
-  - id: E6GK4WlZds3rytbaI_6bX
-    name: $text
-id: 20240730115403-RfCUan
-createdAt: 2024-07-30T03:54:03.035Z
-updatedAt: 2024-07-30T03:54:03.035Z
+id: 20240730190756-mDo60q
+createdAt: 2024-07-30T01:30:37.163Z
+updatedAt: 2024-07-30T01:30:37.163Z
 createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
 updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
-name: AddScore
-model: gpt-4o-mini
-prompt: "{{question}}"
-code: |
+name: AI-Search-Optimize-Sort
+code: >
   const getUserHeader = () => {
     const user = context.get('user');
     return {
@@ -66,7 +65,8 @@ code: |
   };
 
 
-  const list = (search?.organic_results || []).map(async (i)=>{
+
+  const list = (search?.organic_results || []).map(async (i) => {
     const result = await call({
       name: 'z2qaBP9SahqU2L2YA3ip7NecwKACMByTFuiJ2',
       method: 'POST',
@@ -74,7 +74,7 @@ code: |
       data: {
         projectId: '468966286659944448',
         ref: 'main',
-        assistantId: '20240730120238-Okzzyf',
+        assistantId: '20240730184334-jo2uSw',
         inputs: {
           question,
           content: i.content
@@ -91,7 +91,16 @@ code: |
   })
 
 
+  const result = (await Promise.all(list)).flat().sort((a, b) => b.score -
+  a.score);
+
+  console.log('搜索数据', result.length)
+
+  console.log('去重数据',uniqBy(result, 'id').length);
+
+
+
   return {
     text: 'hello, AIGNE!',
-    organic_results: (await Promise.all(list)).sort((a, b) => b.score - a.score)
+    organic_results: result
   }

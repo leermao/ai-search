@@ -36,6 +36,17 @@ parameters:
         from: assistant
         parameters:
           question: "{{ question }}"
+  - id: crFilhdMjLE9OiN6PN6I3
+    key: keyword4
+    type: source
+    source:
+      variableFrom: tool
+      agent:
+        projectId: "468966286659944448"
+        id: 20240730161725-tUyHnk
+        from: assistant
+        parameters:
+          question: "{{ question }}"
 prompts:
   sqwbmXLUMvuDvjiY7Hwxa:
     index: 0
@@ -60,22 +71,22 @@ outputVariables:
           type: string
           name: link
           required: true
-          hidden: true
+          hidden: false
         - id: 1om7vcVN0RQfWJGMaWzzY
           type: string
           name: snippet
-          hidden: true
+          hidden: false
         - id: gscJT-yjzJQ3NTeoS4rSr
           type: string
           name: title
         - id: CYM2TigsjIGYohGH8Lxpc
           type: string
           name: favicon
-          hidden: true
+          hidden: false
         - id: huqVgu_DieYIUVoNsts1l
           type: string
           name: source
-          hidden: true
+          hidden: false
         - id: G0kEz-UZ5uZqLkETfHWm5
           type: string
           name: content
@@ -85,29 +96,26 @@ updatedAt: 2024-07-30T01:30:37.163Z
 createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
 updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
 name: Search
-code: >
-  const q = [question, ...(keyword1?.answer || []), ...(keyword2?.answer || []),
-  ...(keyword3?.answer || [])];
+code: |
+  const q = [question, ...(keyword4?.answer || [])];
 
+  console.log(q)
 
   const result = await call({
     name: 'z8ia1WEiBZ7hxURf6LwH21Wpg99vophFwSJdu',
     method: 'GET',
     path: '/api/call/posts/search',
-    params: { size: 5, q: q.join(',') },
+    params: { size: 20, q: q.join(',') },
   })
-
 
 
   if (result.status === 503) {
     throw new Error(result.data?.error)
   }
 
-
   if (!(result.status >= 200 && result.status < 300)) {
     throw new Error(`failed to search discuss-kit ${result.statusText}`);
   }
-
 
   const list = (result?.data || []).map(x => ({
     ...x,
@@ -115,9 +123,7 @@ code: >
     source: 'Discuss Kit',
   }))
 
-
   console.log(list)
-
 
   return {
     organic_results: list,

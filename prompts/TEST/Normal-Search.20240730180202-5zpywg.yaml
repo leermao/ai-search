@@ -1,0 +1,64 @@
+type: function
+parameters:
+  - id: GVDfel1l4BehbFSNYPuJT
+    type: string
+    key: question
+prompts:
+  sqwbmXLUMvuDvjiY7Hwxa:
+    index: 0
+    data:
+      type: message
+      data:
+        id: sqwbmXLUMvuDvjiY7Hwxa
+        role: user
+        content: "{{ question }}"
+outputVariables:
+  - id: jQuR5yIutLBv99hRUCRoM
+    name: $text
+  - id: LvnG8SZocXSmg5ME_eL2E
+    name: organic_results
+    type: array
+    element:
+      id: uEXG3mtuFC_ax7-4HagvX
+      name: element
+      type: object
+      properties:
+        - id: gscJT-yjzJQ3NTeoS4rSr
+          type: string
+          name: title
+        - id: G0kEz-UZ5uZqLkETfHWm5
+          type: string
+          name: content
+        - id: OzIqr0mzN10Nmc5zjutPK
+          type: string
+          name: id
+id: 20240730180202-5zpywg
+createdAt: 2024-07-30T01:30:37.163Z
+updatedAt: 2024-07-30T01:30:37.163Z
+createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+name: Normal-Search
+code: |
+  const result = await call({
+    name: 'z8ia1WEiBZ7hxURf6LwH21Wpg99vophFwSJdu',
+    method: 'GET',
+    path: '/api/call/posts/search',
+    params: { size: 20, q: question },
+  })
+
+
+  if (result.status === 503) {
+    throw new Error(result.data?.error)
+  }
+
+  if (!(result.status >= 200 && result.status < 300)) {
+    throw new Error(`failed to search discuss-kit ${result.statusText}`);
+  }
+
+  const list = (result?.data || []);
+  console.log(list)
+
+  return {
+    organic_results: list,
+    related_questions: [],
+  }

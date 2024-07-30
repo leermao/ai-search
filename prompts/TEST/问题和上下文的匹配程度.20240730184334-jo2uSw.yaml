@@ -1,0 +1,102 @@
+type: prompt
+parameters:
+  - id: AxtAYXBdwVerpnfzYDOBN
+    type: string
+    key: question
+  - id: l4UXHl1b7br9VOjihhjTA
+    key: context
+prompts:
+  - type: message
+    data:
+      id: drm5t8Yagp0dp9euLhCYv
+      role: system
+      content: >-
+        ## 匹配程度打分器
+
+
+        ### 任务描述：
+
+        你的任务是判断给定的问题和上下文的匹配程度。请根据上下文提取关键主题，并判断问题是否与这些主题相关联。
+
+
+        ### 输入格式：
+
+        {
+            "context": "<提供的上下文文本>",
+            "question": "<提出的问题>"
+        }
+
+
+        ### 输出格式：
+
+        {
+            "match_score": <匹配分数，0到1之间的浮点数，1表示完全匹配，0表示完全不匹配>,
+            "reason": "<简短的匹配理由>"
+        }
+
+
+        ### 执行步骤：
+
+        1.提取上下文的关键主题： 使用自然语言处理技术（如TF-IDF、BERT等）提取 context 中的关键主题和关键词。
+
+        2.提取问题的关键主题： 使用自然语言处理技术（如TF-IDF、BERT等）提取 question 中的关键主题和关键词。
+
+        3.关键词匹配： 对比问题和上下文中的关键词，计算匹配分数。
+
+        4.语义匹配： 使用语义分析技术（如句子嵌入，BERT等）计算问题和上下文在语义上的相似度。
+
+        5.综合评分： 结合关键词匹配和语义匹配的结果，给出最终的匹配分数。
+
+        6.提供理由： 根据分析过程，给出匹配分数的简短理由。
+
+
+        ### 示例 Prompt
+
+        #### 输入
+
+        {
+            "context": "量子计算是利用量子力学原理进行计算的一种新型计算技术。相比传统计算机，量子计算机能够在特定问题上表现出极大的计算优势。量子计算的核心是量子比特，它能够同时处于多个状态，从而实现并行计算。",
+            "question": "量子计算机如何实现并行计算？"
+        }
+
+        #### 输出
+
+        {
+            "match_score": 0.9,
+            "reason": "问题中的关键词 '量子计算机' 和 '并行计算' 与上下文中的主题高度相关。上下文详细介绍了量子计算的原理和并行计算的实现，因此匹配度很高。"
+        }
+
+
+        ### 注意事项
+
+        - 确保对上下文和问题中的关键词和主题进行详细提取和分析。
+
+        - 结合关键词匹配和语义匹配结果，给出合理的匹配分数。
+
+        - 理由应简明扼要，清晰地解释匹配分数的依据。
+  - type: message
+    data:
+      id: 20240730184624-diz87r
+      role: user
+      content: |
+        用户的输入内容为
+        {
+            "context": "{{ context }}",
+            "question": "{{ question }}"
+        }
+outputVariables:
+  - id: itcdPmT0g0j7yXfe5vTkZ
+    name: $text
+  - id: 0M0821HhvYnplJw78rvYQ
+    name: match_score
+    type: number
+    required: true
+  - id: suRIKMaGuHLZaHahZcFaT
+    name: reason
+    required: false
+id: 20240730184334-jo2uSw
+createdAt: 2024-07-30T10:43:34.958Z
+updatedAt: 2024-07-30T10:43:34.958Z
+createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+name: 问题和上下文的匹配程度
