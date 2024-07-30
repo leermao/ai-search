@@ -1,0 +1,51 @@
+type: callAgent
+parameters:
+  - id: Dknj0zycebvL9f0sjTt6-
+    type: string
+    key: question
+  - id: G6bQVzv1MexeHcxJzJTX0
+    key: keyword1
+    type: source
+    source:
+      variableFrom: tool
+prompts:
+  XNYHLyvQ_K3HNDMcvZ1R3:
+    index: 0
+    data:
+      type: message
+      data:
+        id: XNYHLyvQ_K3HNDMcvZ1R3
+        role: user
+        content: "{{ question }}"
+outputVariables:
+  - id: rLWtK2e24xQHWHSPgzSL7
+    name: answer1
+    from:
+      type: output
+      id: 9HiEoGT1s3JQb2oTXG912
+  - id: E7Hv8UtsYWaRf5xEHa4PT
+    name: answer2
+    from:
+      type: output
+      id: zwsTam7AIJe9gCZhqQkeG
+  - id: S_KvGKbyhdHYHuOQIyOSw
+    name: answer3
+    from:
+      type: output
+      id: fnkuUUAZCg0yhleVKvyl1
+id: 20240719162003-wVBFio
+createdAt: 2024-07-19T08:20:03.350Z
+updatedAt: 2024-07-19T08:20:03.350Z
+createdBy: z1cS5a9pffsJ3iBRR8cZWmWTQWEDhYfdmEn
+updatedBy: z1cS5a9pffsJ3iBRR8cZWmWTQWEDhYfdmEn
+name: keywords
+agents:
+  - id: 20240718102756-QWl9fq
+    parameters:
+      question: "{{ question }}"
+  - id: 20240718104107-KtyMnj
+    parameters:
+      question: "{{ question }}"
+  - id: 20240719161117-d5tOcW
+    parameters:
+      question: "{{ question }}"
