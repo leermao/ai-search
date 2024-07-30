@@ -1,0 +1,125 @@
+type: function
+parameters:
+  - id: GVDfel1l4BehbFSNYPuJT
+    type: string
+    key: question
+  - id: UsTVg8599y3nSbjRwOb89
+    key: keyword1
+    type: source
+    source:
+      variableFrom: tool
+      agent:
+        projectId: "468966286659944448"
+        id: 20240718102756-QWl9fq
+        from: assistant
+        parameters:
+          question: "{{ question }}"
+  - id: pWvOyxgOWQJe6ohFdNnmF
+    key: keyword2
+    type: source
+    source:
+      variableFrom: tool
+      agent:
+        projectId: "468966286659944448"
+        id: 20240718104107-KtyMnj
+        from: assistant
+        parameters:
+          question: "{{ question }}"
+  - id: SurCTlspPmTUfZwV4HZgI
+    key: keyword3
+    type: source
+    source:
+      variableFrom: tool
+      agent:
+        projectId: "468966286659944448"
+        id: 20240719161117-d5tOcW
+        from: assistant
+        parameters:
+          question: "{{ question }}"
+prompts:
+  sqwbmXLUMvuDvjiY7Hwxa:
+    index: 0
+    data:
+      type: message
+      data:
+        id: sqwbmXLUMvuDvjiY7Hwxa
+        role: user
+        content: "{{ question }}"
+outputVariables:
+  - id: jQuR5yIutLBv99hRUCRoM
+    name: $text
+  - id: LvnG8SZocXSmg5ME_eL2E
+    name: organic_results
+    type: array
+    element:
+      id: uEXG3mtuFC_ax7-4HagvX
+      name: element
+      type: object
+      properties:
+        - id: sbgYV_s8YwZKXO-7u3TYH
+          type: string
+          name: link
+          required: true
+          hidden: true
+        - id: 1om7vcVN0RQfWJGMaWzzY
+          type: string
+          name: snippet
+          hidden: true
+        - id: gscJT-yjzJQ3NTeoS4rSr
+          type: string
+          name: title
+        - id: CYM2TigsjIGYohGH8Lxpc
+          type: string
+          name: favicon
+          hidden: true
+        - id: huqVgu_DieYIUVoNsts1l
+          type: string
+          name: source
+          hidden: true
+        - id: G0kEz-UZ5uZqLkETfHWm5
+          type: string
+          name: content
+id: 20240730093037-FRWnyG
+createdAt: 2024-07-30T01:30:37.163Z
+updatedAt: 2024-07-30T01:30:37.163Z
+createdBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+updatedBy: z2qaBKnrTUAobCcqGMbqAMFW5WHpYzL3Kub2D
+name: Search
+code: >
+  const q = [question, ...(keyword1?.answer || []), ...(keyword2?.answer || []),
+  ...(keyword3?.answer || [])];
+
+
+  const result = await call({
+    name: 'z8ia1WEiBZ7hxURf6LwH21Wpg99vophFwSJdu',
+    method: 'GET',
+    path: '/api/call/posts/search',
+    params: { size: 5, q: q.join(',') },
+  })
+
+
+
+  if (result.status === 503) {
+    throw new Error(result.data?.error)
+  }
+
+
+  if (!(result.status >= 200 && result.status < 300)) {
+    throw new Error(`failed to search discuss-kit ${result.statusText}`);
+  }
+
+
+  const list = (result?.data || []).map(x => ({
+    ...x,
+    title: x.title || (x.snippet || x.content || '').slice(0, 10),
+    source: 'Discuss Kit',
+  }))
+
+
+  console.log(list)
+
+
+  return {
+    organic_results: list,
+    related_questions: [],
+  }

@@ -39,6 +39,10 @@ prompts:
 
         - 从输入内容中提取最多三个相关关键词。
 
+        - 提取的关键词必须和输入内容高度相关。
+
+        - 如果提取失败，直接返回输入
+
 
         ##Goals:
 
@@ -47,6 +51,8 @@ prompts:
         - 纠正拼写错误。
 
         - 提取最多三个相关的关键词。
+
+        - 提取的关键词必须和输入内容高度相关。
 
 
         ##Constrains:
@@ -69,12 +75,13 @@ prompts:
 
         ##Initialization
 
-        作为关键词提取专家，你必须遵循约束条件，根据用户输入的内容 {{ question }} 提取关键字
+        作为关键词提取专家，你必须遵循约束条件，根据用户输入的内容 "{{ question }}" 提取关键字
 outputVariables:
   - id: Z21JQZfy8usAHEdQNvG3m
     name: $text
+    hidden: true
   - id: 9HiEoGT1s3JQb2oTXG912
-    name: answer1
+    name: answer
     type: array
     element:
       id: eJlY5eq8mS6skTydAM95j

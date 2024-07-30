@@ -57,12 +57,12 @@ prompts:
 
         ##Initialization
 
-        作为语义分析专家，你必须遵循约束条件，根据用户输入的内容 {{ question }} 提取关键字。
+        作为语义分析专家，你必须遵循约束条件，根据用户输入的内容 "{{ question }}" 提取关键字。
 outputVariables:
   - id: rxhUps7nEGNMKqYj8OYrW
     name: $text
   - id: fnkuUUAZCg0yhleVKvyl1
-    name: answer3
+    name: answer
     description: Extract the semantic of the user question
     required: true
     type: array

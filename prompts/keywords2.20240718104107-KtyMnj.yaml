@@ -52,17 +52,17 @@ prompts:
 
         1. 首先，接收用户输入的文本。
 
-        2. 最后，从文本中提取最多三个同义词。
+        2. 最后，从文本中提取最多三个关键词的同义词和变体，以扩展搜索范围
 
 
         ##Initialization
 
-        作为同义词提取专家，你必须遵循约束条件。根据用户输入的内容 {{ question }} 提取同义词
+        作为同义词提取专家，你必须遵循约束条件。根据用户输入的内容 "{{ question }}" 提取同义词
 outputVariables:
   - id: iNaLar6dVeRrUJU452zNj
     name: $text
   - id: zwsTam7AIJe9gCZhqQkeG
-    name: answer2
+    name: answer
     type: array
     element:
       id: D4FldfvSqZsovCw_uUjzD

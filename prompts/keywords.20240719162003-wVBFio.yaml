@@ -3,11 +3,6 @@ parameters:
   - id: Dknj0zycebvL9f0sjTt6-
     type: string
     key: question
-  - id: G6bQVzv1MexeHcxJzJTX0
-    key: keyword1
-    type: source
-    source:
-      variableFrom: tool
 prompts:
   XNYHLyvQ_K3HNDMcvZ1R3:
     index: 0
@@ -18,16 +13,6 @@ prompts:
         role: user
         content: "{{ question }}"
 outputVariables:
-  - id: rLWtK2e24xQHWHSPgzSL7
-    name: answer1
-    from:
-      type: output
-      id: 9HiEoGT1s3JQb2oTXG912
-  - id: E7Hv8UtsYWaRf5xEHa4PT
-    name: answer2
-    from:
-      type: output
-      id: zwsTam7AIJe9gCZhqQkeG
   - id: S_KvGKbyhdHYHuOQIyOSw
     name: answer3
     from:
